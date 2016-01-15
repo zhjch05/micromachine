@@ -1,2 +1,2 @@
-require "cutest"
-require_relative "../lib/micromachine"
+require 'cutest'
+require_relative '../lib/micromachine'

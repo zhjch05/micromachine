@@ -4,24 +4,16 @@ require 'micromachine'
 
 fsm = MicroMachine.new(:pending)
 
-fsm.when(:confirm,  :pending => :confirmed)
-fsm.when(:ignore,   :pending => :ignored)
-fsm.when(:reset,    :confirmed => :pending, :ignored => :pending)
+fsm.when(:confirm,  pending: :confirmed)
+fsm.when(:ignore,   pending: :ignored)
+fsm.when(:reset,    confirmed: :pending, ignored: :pending)
 
-puts "Should print Confirmed, Reset and Ignored:"
+puts 'Should print Confirmed, Reset and Ignored:'
 
-if fsm.trigger(:confirm)
-  puts "Confirmed"
-end
+puts 'Confirmed' if fsm.trigger(:confirm)
 
-if fsm.trigger(:ignore)
-  puts "Ignored"
-end
+puts 'Ignored' if fsm.trigger(:ignore)
 
-if fsm.trigger(:reset)
-  puts "Reset"
-end
+puts 'Reset' if fsm.trigger(:reset)
 
-if fsm.trigger(:ignore)
-  puts "Ignored"
-end
+puts 'Ignored' if fsm.trigger(:ignore)
